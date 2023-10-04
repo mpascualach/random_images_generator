@@ -8,4 +8,8 @@ export class PhotoService {
   getPhoto(id: number) {
     return this.http.get(`https://picsum.photos/id/${id}/info`);
   }
+
+  getList() {
+    return this.http.get('https://picsum.photos/v2/list');
+  }
 }

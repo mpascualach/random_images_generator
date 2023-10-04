@@ -1,0 +1,15 @@
+.flex-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.img-container {
+  max-width: 300px;
+  flex-basis: calc(33.333% - 16px); /* 3 columns, accounting for 16px gap */
+  margin: 8px; /* half of gap */
+  height: auto;
+}
+
+.img-container img {
+  width: 100%;
+}
