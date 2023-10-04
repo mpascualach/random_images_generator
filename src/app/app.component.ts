@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { PhotoService } from './photo/photo.service';
 
 import { Image } from '../interfaces/Image';
-import { ResponseImage } from '../interfaces/ResponseImage';
+
 import { loremIpsum } from 'lorem-ipsum';
 
 @Component({
@@ -13,10 +13,10 @@ import { loremIpsum } from 'lorem-ipsum';
 export class AppComponent implements OnInit {
   images: Image[] = [];
 
-  constructor(private photoService: PhotoService) {}
+  constructor() {}
 
   ngOnInit() {
-    this.generateListOfPhotos(100);
+    this.generateListOfPhotos(5000);
     // this.getListOfPhotos(4000);
   }
 
@@ -26,33 +26,9 @@ export class AppComponent implements OnInit {
         id: i,
         photo: `https://picsum.photos/500/500?random=${i}`,
         text: loremIpsum(),
+        loaded: true,
       };
       this.images.push(formattedImage);
     }
-  }
-
-  getListOfPhotos(limit: number) {
-    this.photoService.getList(limit).subscribe((res: any) => {
-      for (const image of res) {
-        const formattedImage: Image = {
-          id: image.id,
-          photo: image.download_url,
-          text: image.author,
-        };
-        this.images.push(formattedImage);
-      }
-      console.log('Res: ', res);
-    });
-  }
-
-  getSinglePhoto(id: number) {
-    this.photoService.getPhoto(1).subscribe((res: any) => {
-      const formattedImage: Image = {
-        id: res.id,
-        photo: res.download_url,
-        text: res.author,
-      };
-      this.images.push(formattedImage);
-    });
   }
 }

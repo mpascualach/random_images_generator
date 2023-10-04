@@ -1,1 +1,24 @@
-<p>photo-list works!</p>
+<!-- <cdk-virtual-scroll-viewport
+  itemSize="238"
+  minBufferPx="238"
+  maxBufferPx="476"
+  class="viewport"
+>
+  <div *cdkVirtualFor="let image of images" class="img-container">
+    <img
+      [src]="image.photo"
+      [alt]="image.text"
+      (load)="onImageLoad(image)"
+      (error)="onImageError(image)"
+    />
+  </div>
+</cdk-virtual-scroll-viewport> -->
+
+<div cool-virtual-grid-container>
+  <cool-virtual-grid
+    [itemIterator]="images"
+    [itemHeight]="40"
+    [itemWidth]="35"
+    [itemSpace]="5"
+  ></cool-virtual-grid>
+</div>

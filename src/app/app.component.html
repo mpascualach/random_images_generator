@@ -1,6 +1,12 @@
-<div class="flex-container">
-  <div *ngFor="let image of images" class="img-container">
-    <img [src]="image.photo" [alt]="image.text" loading="lazy" />
-    <p class="random-text">{{ image.text }}</p>
+<app-photo-list [images]="images"></app-photo-list>
+<!-- 
+<cdk-virtual-scroll-viewport
+  itemSize="238"
+  minBufferPx="238"
+  maxBufferPx="476"
+  class="viewport"
+>
+  <div *cdkVirtualFor="let image of images" class="img-container">
+    <img [src]="image.photo" [alt]="image.text" />
   </div>
-</div>
+</cdk-virtual-scroll-viewport> -->
