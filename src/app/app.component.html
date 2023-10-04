@@ -1,5 +1,6 @@
 <div class="flex-container">
   <div *ngFor="let image of images" class="img-container">
-    <img [src]="image.photo" [alt]="image.text" />
+    <img [src]="image.photo" [alt]="image.text" loading="lazy" />
+    <p class="random-text">{{ image.text }}</p>
   </div>
 </div>

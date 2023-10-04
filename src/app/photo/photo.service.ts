@@ -9,7 +9,9 @@ export class PhotoService {
     return this.http.get(`https://picsum.photos/id/${id}/info`);
   }
 
-  getList() {
-    return this.http.get('https://picsum.photos/v2/list');
+  getList(limit: number) {
+    return this.http.get(
+      `https://picsum.photos/v2/list?page=40&limit=${limit}`
+    );
   }
 }

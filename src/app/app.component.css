@@ -4,12 +4,21 @@
 }
 
 .img-container {
-  max-width: 300px;
-  flex-basis: calc(33.333% - 16px); /* 3 columns, accounting for 16px gap */
-  margin: 8px; /* half of gap */
-  height: auto;
+  flex-basis: calc(16.667% - 8px);
+  margin: 4px;
+  height: fit-content;
+  position: relative;
+  text-align: center;
+  cursor: pointer;
 }
 
 .img-container img {
   width: 100%;
+}
+
+.random-text {
+  position: absolute;
+  bottom: 0;
+  color: white;
+  text-shadow: 2px 2px 4px #000000;
 }

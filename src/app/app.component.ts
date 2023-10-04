@@ -3,6 +3,7 @@ import { PhotoService } from './photo/photo.service';
 
 import { Image } from '../interfaces/Image';
 import { ResponseImage } from '../interfaces/ResponseImage';
+import { loremIpsum } from 'lorem-ipsum';
 
 @Component({
   selector: 'app-root',
@@ -15,7 +16,33 @@ export class AppComponent implements OnInit {
   constructor(private photoService: PhotoService) {}
 
   ngOnInit() {
-    this.getListOfPhotos();
+    this.generateListOfPhotos(100);
+    // this.getListOfPhotos(4000);
+  }
+
+  generateListOfPhotos(limit: number) {
+    for (let i = 1; i <= limit; i++) {
+      const formattedImage: Image = {
+        id: i,
+        photo: `https://picsum.photos/500/500?random=${i}`,
+        text: loremIpsum(),
+      };
+      this.images.push(formattedImage);
+    }
+  }
+
+  getListOfPhotos(limit: number) {
+    this.photoService.getList(limit).subscribe((res: any) => {
+      for (const image of res) {
+        const formattedImage: Image = {
+          id: image.id,
+          photo: image.download_url,
+          text: image.author,
+        };
+        this.images.push(formattedImage);
+      }
+      console.log('Res: ', res);
+    });
   }
 
   getSinglePhoto(id: number) {
@@ -26,20 +53,6 @@ export class AppComponent implements OnInit {
         text: res.author,
       };
       this.images.push(formattedImage);
-    });
-  }
-
-  getListOfPhotos() {
-    this.photoService.getList().subscribe((res: any) => {
-      for (const image of res) {
-        const formattedImage: Image = {
-          id: image.id,
-          photo: image.download_url,
-          text: image.author,
-        };
-        this.images.push(formattedImage);
-      }
-      console.log('Res: ', res);
     });
   }
 }
